@@ -18,6 +18,12 @@ namespace WebApplication
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+           // routes.MapRoute(
+           //    name: "JsonHome",
+           //    url: "JsonHome/Index",
+           //    defaults: new { controller = "JsonHome", action = "Index", id = UrlParameter.Optional }
+           //);
         }
     }
 }

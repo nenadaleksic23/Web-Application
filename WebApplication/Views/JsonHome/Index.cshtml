@@ -1,11 +1,9 @@
-﻿@using WebApplication.Models;
-@model  List<WebApplication.Models.ProductModel>
+﻿@using WebApplication.Models
+@model List<WebApplication.Models.ProductModel>
+
 @{
-
-    ViewBag.Title = "Home Page";
-    bool modelNotEmpty = Model != null && Model.Any();
-    string controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
-
+    ViewBag.Title = "Index";
+    bool modelNotEmpty = true;
 }
 
 <table class="table table-hover">
@@ -18,8 +16,7 @@
             <th>Manufacturer</th>
             <th>Supplier</th>
             <th>Price(EUR)</th>
-            <th></th>
-            <th><a href="@Url.Action("CreationForm",controllerName)" class="btn btn-primary">Create</a></th>
+            <th><button class="btn btn-primary">Create</button></th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +32,7 @@
                     <td>@product.Manufacturer</td>
                     <td>@product.Supplier</td>
                     <td>@product.Price</td>
-                    <td><a href="@Url.Action("Delete",controllerName,new { productId = product.ProductID})" class="btn btn-danger" data-id="@product.ProductID" >Delete</a></td>
-                    <td><a href="@Url.Action("Edit",controllerName,new { productId = product.ProductID})" class="btn btn-warning" data-id="@product.ProductID" >Edit</a></td>
+                    <td><button type="button" class="btn btn-danger" data-id="@product.ProductID">Delete</button></td>
                 </tr>
             }
         }
@@ -46,10 +42,11 @@
                 <td colspan="8">
                     We don't have any products yet !
                 </td>
-               
+
             </tr>
 
         }
     </tbody>
-    
+
 </table>
+

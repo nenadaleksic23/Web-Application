@@ -20,7 +20,7 @@ namespace WebApplication.Models
         {
             get
             {
-                return this.Exception != null;
+                return this.Exception == null;
             }
         }
         public string Error
@@ -31,7 +31,7 @@ namespace WebApplication.Models
                 string err = string.Empty;
                 if (Exception != null)
                 {
-                    err = Exception.InnerException.Message;
+                    err = Exception.Message;
                 }
                 return err;
             }

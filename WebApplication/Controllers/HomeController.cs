@@ -14,25 +14,47 @@ namespace WebApplication.Controllers
     {
         public ActionResult Index()
         {
-            
-            return View();
+            List<ProductModel> models = ProductHelper.GetProducts();
+            return View("~/Views/Home/Index.cshtml",models);
         }
-        public ActionResult Delete(int ProductId)
+        public ActionResult Delete(int productId)
         {
-            Result result = ProductHelper.DeleteProduct(ProductId);
-            if (result.IsSuccess)
-            {
-                return Json(new { Succeded = true,  CallBack = "RefreshProducts"  });
-            }
-            else
-            {
-                return Json(new { Succeded = false, CallBack = "DisplayError", Error = result.Error });
-            }
+            Result result = ProductHelper.DeleteProduct(productId);
+            //if (result.IsSuccess)
+            //{
+            //    return Json(new { Succeded = true,  CallBack = "RefreshProducts"  });
+            //}
+            //else
+            //{
+            //    return Json(new { Succeded = false, CallBack = "DisplayError", Error = result.Error });
+            //}
+            return Index();
         }
         public ActionResult CreationForm()
         {
-            Product product = new Product();
-            return PartialView("~/Views/Home/Partial/_CreationForm.cshtml", product);
+            ProductModel product = new ProductModel();
+            return PartialView("ProductForm", product);
         }
+
+        public ActionResult Save(ProductModel model)
+        {
+            if(model.ProductID > 0)
+            {
+                ProductHelper.EditProduct(model);
+            }
+            else
+            {
+                ProductHelper.SaveProduct(model);
+            }
+            
+            return Index();
+        }
+        public ActionResult Edit(int productId)
+        {
+            ProductModel product = ProductHelper.GetProductModelById(productId);
+            return PartialView("ProductForm", product);
+        }
+       
+
     }
 }

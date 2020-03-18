@@ -129,11 +129,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Context\ProductDb.cs" />
+    <Compile Include="Controllers\JsonHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\MappingHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Models\ActionResultAdditions.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +151,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JsonDb\Products.txt" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\appJson.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -174,6 +181,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\JsonHome\Index.cshtml" />
+    <Content Include="Views\Home\Partial\_ProductForm.cshtml" />
+    <Content Include="Views\Shared\ProductForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
