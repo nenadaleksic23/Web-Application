@@ -9,9 +9,9 @@ namespace WebApplication.Controllers
 {
     public class BaseController : Controller
     {
-        public ActionResult JsonSuccess(string CallBack)
+        public ActionResult JsonSuccess(string Callback,string CallbackParameter)
         {
-            object obj = new { Status = "Ok", CallBack = CallBack };
+            object obj = new { Status = "Ok", Callback = Callback, CallbackParameter = CallbackParameter };
             string res = JsonConvert.SerializeObject(obj);
             return Content(res, "application/json");
 

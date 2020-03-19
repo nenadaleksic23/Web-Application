@@ -31,16 +31,19 @@ namespace WebApplication.Controllers
 
         public ActionResult Save(ProductModel model)
         {
+            Result result = new Result();
             if (ModelState.IsValid)
             {
                 if (model.ProductID > 0)
                 {
-                    ProductHelper.EditProduct(model);
+                    result = ProductHelper.EditProduct(model);
                 }
                 else
                 {
-                    ProductHelper.SaveProduct(model);
+                    result = ProductHelper.SaveProduct(model);
                 }
+                //For this I should make some frontend setup for user friendly messages fallbacks etc
+                //if (result.IsSuccess) { DOSomeGreatStuff() }else{ ComeOnYouCanDoIt() }
                 return Index();
             }
             else

@@ -48,12 +48,12 @@ namespace WebApplication.Controllers
         public ActionResult CreationForm()
         {
             ProductModel product = new ProductModel();
-            return PartialView("ProductForm", product);
+            return View("ProductForm", product);
         }
         public ActionResult Edit(int productId)
         {
             ProductModel product = JsonHelper.GetProductById(productId);
-            return PartialView("ProductForm", product);
+            return View("ProductForm", product);
         }
 
 

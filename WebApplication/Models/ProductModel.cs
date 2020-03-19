@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using WebApplication.Model;
+using WebApplication.Validators;
 
 namespace WebApplication.Models
 {
@@ -24,6 +25,7 @@ namespace WebApplication.Models
             }
         }
         public int ProductID { get; set; }
+        [ContainDigit(ErrorMessage = "Name can't contain digits")]
         [Required(ErrorMessage ="You must enter Product Name")]
         public string ProductName { get; set; }
         [Required(ErrorMessage = "You must enter description")]

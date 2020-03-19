@@ -137,11 +137,11 @@
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MappingHelper.cs" />
     <Compile Include="Helpers\ProductHelper.cs" />
-    <Compile Include="Models\ActionResultAdditions.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\ContainDigitAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -154,7 +154,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="JsonDb\Products.txt" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\appJson.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

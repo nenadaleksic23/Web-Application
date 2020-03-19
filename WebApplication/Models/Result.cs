@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebApplication.Models
 {
+    //In real world that will be decider if method before succeded so i would know if to go forward or get callback
     public class Result
     {
         public Result()
