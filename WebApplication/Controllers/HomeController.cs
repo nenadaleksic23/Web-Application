@@ -10,7 +10,7 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -20,14 +20,7 @@ namespace WebApplication.Controllers
         public ActionResult Delete(int productId)
         {
             Result result = ProductHelper.DeleteProduct(productId);
-            //if (result.IsSuccess)
-            //{
-            //    return Json(new { Succeded = true,  CallBack = "RefreshProducts"  });
-            //}
-            //else
-            //{
-            //    return Json(new { Succeded = false, CallBack = "DisplayError", Error = result.Error });
-            //}
+         
             return Index();
         }
         public ActionResult CreationForm()
@@ -38,21 +31,29 @@ namespace WebApplication.Controllers
 
         public ActionResult Save(ProductModel model)
         {
-            if(model.ProductID > 0)
+            if (ModelState.IsValid)
             {
-                ProductHelper.EditProduct(model);
+                if (model.ProductID > 0)
+                {
+                    ProductHelper.EditProduct(model);
+                }
+                else
+                {
+                    ProductHelper.SaveProduct(model);
+                }
+                return Index();
             }
             else
             {
-                ProductHelper.SaveProduct(model);
+                //In case of some modelstate errors and stuff when server validation needed
+                return Edit(model.ProductID);
             }
             
-            return Index();
         }
         public ActionResult Edit(int productId)
         {
             ProductModel product = ProductHelper.GetProductModelById(productId);
-            return PartialView("ProductForm", product);
+            return View("ProductForm", product);
         }
        
 

@@ -12,7 +12,7 @@ namespace WebApplication.Models
         }
         public Result(Exception ex)
         {
-            this.Exception = ex;
+            Exception = ex;
         }
         public Exception Exception { get; set; }
         public object ResponseObject { get; set; }
@@ -20,7 +20,7 @@ namespace WebApplication.Models
         {
             get
             {
-                return this.Exception == null;
+                return Exception == null;
             }
         }
         public string Error

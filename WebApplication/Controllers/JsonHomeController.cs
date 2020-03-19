@@ -8,7 +8,7 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class JsonHomeController : Controller
+    public class JsonHomeController : BaseController
     {
         // GET: JsonHome
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
             JsonHelper.DeleteProduct(productId);
             return Index();
         }
-
+        [HttpPost]
         public ActionResult Save(ProductModel model)
         {
             if (ModelState.IsValid)
@@ -35,8 +35,14 @@ namespace WebApplication.Controllers
                 {
                     JsonHelper.SaveProductToFile(model);
                 }
+                return Index();
             }
-            return Index();
+            else
+            {
+                //In case of some modelstate errors and stuff when  complex server validation needed
+                return Edit(model.ProductID);
+            }
+           
         }
 
         public ActionResult CreationForm()

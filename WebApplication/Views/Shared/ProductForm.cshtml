@@ -1,23 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "ProductForm";
-}
-
-<h2>ProductForm</h2>
-
-@model WebApplication.Models.ProductModel
+﻿@model WebApplication.Models.ProductModel
 @{
     string Controller = this.ViewContext.RouteData.Values["controller"].ToString();
     Layout = "_Layout.cshtml";
 }
-@using (Html.BeginForm("Save", Controller))
+@using (Html.BeginForm("Save", Controller, FormMethod.Post))
 {
-    @Html.HiddenFor(m=>m.ProductID)
+    @Html.HiddenFor(m => m.ProductID)
     <label>Please enter Name</label>
     @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ProductName)
     <br />
     <label>Please enter ProductDescription</label>
     @Html.TextBoxFor(m => m.ProductDescription, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ProductDescription)
     <br />
     <label>Please enter Manufacturer</label>
     @Html.TextBoxFor(m => m.Manufacturer, new { @class = "form-control" })
@@ -27,6 +22,7 @@
     <br />
     <label>Please enter Price</label>
     @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Price)
     <br />
     <label>Please enter Category</label>
     @Html.TextBoxFor(m => m.Category, new { @class = "form-control" })

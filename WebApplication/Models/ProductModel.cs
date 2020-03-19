@@ -24,14 +24,14 @@ namespace WebApplication.Models
             }
         }
         public int ProductID { get; set; }
-        [Required]
+        [Required(ErrorMessage ="You must enter Product Name")]
         public string ProductName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "You must enter description")]
         public string ProductDescription { get; set; }
         public string Category { get; set; }
         public string Manufacturer { get; set; }
         public string Supplier { get; set; }
-        [Required]
+        [Required(ErrorMessage = "You must enter price")]
         public decimal Price { get; set; }
     }
 }
