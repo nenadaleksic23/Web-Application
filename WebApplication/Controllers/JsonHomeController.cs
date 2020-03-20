@@ -15,12 +15,12 @@ namespace WebApplication.Controllers
         {
             List<ProductModel> products = new List<ProductModel>();
             products = JsonHelper.GetProductsFromFile();
-            return View("~/Views/Home/Index.cshtml", products);
+            return View(products);
         }
         public ActionResult Delete(int productId)
         {
             JsonHelper.DeleteProduct(productId);
-            return Index();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Save(ProductModel model)
@@ -35,25 +35,24 @@ namespace WebApplication.Controllers
                 {
                     JsonHelper.SaveProductToFile(model);
                 }
-                return Index();
+                return RedirectToAction("Index");
             }
             else
             {
                 //In case of some modelstate errors and stuff when  complex server validation needed
-                return Edit(model.ProductID);
+                return ProductForm(model.ProductID);
             }
            
         }
 
-        public ActionResult CreationForm()
+        public ActionResult ProductForm(int? productId)
         {
             ProductModel product = new ProductModel();
-            return View("ProductForm", product);
-        }
-        public ActionResult Edit(int productId)
-        {
-            ProductModel product = JsonHelper.GetProductById(productId);
-            return View("ProductForm", product);
+            if (productId.HasValue && productId.Value > 0)
+            {
+                product = JsonHelper.GetProductById(productId.Value);
+            }
+            return PartialView("ProductForm", product);
         }
 
 

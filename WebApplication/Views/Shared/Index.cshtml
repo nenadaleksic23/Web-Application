@@ -4,7 +4,7 @@
 
     ViewBag.Title = "Home Page";
     bool modelNotEmpty = Model != null && Model.Any();
-    string controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+    //string controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
 
 }
 
@@ -19,7 +19,7 @@
             <th>Supplier</th>
             <th>Price(EUR)</th>
             <th></th>
-            <th><a href="@Url.Action("CreationForm",controllerName)" class="btn btn-primary">Create</a></th>
+            <th><a href="@Url.Action("ProductForm")" class="btn btn-primary">Create</a></th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +35,8 @@
                     <td>@product.Manufacturer</td>
                     <td>@product.Supplier</td>
                     <td>@product.Price</td>
-                    <td><a href="@Url.Action("Delete",controllerName,new { productId = product.ProductID})" class="btn btn-danger" data-id="@product.ProductID" >Delete</a></td>
-                    <td><a href="@Url.Action("Edit",controllerName,new { productId = product.ProductID})" class="btn btn-warning" data-id="@product.ProductID" >Edit</a></td>
+                    <td><a href="@Url.Action("Delete",new { productId = product.ProductID})" class="btn btn-danger" data-id="@product.ProductID" >Delete</a></td>
+                    <td><a href="@Url.Action("ProductForm",new { productId = product.ProductID})" class="btn btn-warning" data-id="@product.ProductID" >Edit</a></td>
                 </tr>
             }
         }

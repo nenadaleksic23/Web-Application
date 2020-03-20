@@ -15,17 +15,23 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             List<ProductModel> models = ProductHelper.GetProducts();
-            return View("~/Views/Home/Index.cshtml",models);
+            return View(models);
         }
         public ActionResult Delete(int productId)
         {
             Result result = ProductHelper.DeleteProduct(productId);
-         
-            return Index();
+            //if(result.IsSuccess) {do some great stuff with View and fancy JS } else{ Huston we have a problem !}
+
+            return RedirectToAction("Index");
         }
-        public ActionResult CreationForm()
+
+        public ActionResult ProductForm(int? productId)
         {
             ProductModel product = new ProductModel();
+            if(productId.HasValue && productId.Value > 0)
+            {
+                product = ProductHelper.GetProductModelById(productId.Value);
+            }
             return PartialView("ProductForm", product);
         }
 
@@ -44,21 +50,14 @@ namespace WebApplication.Controllers
                 }
                 //For this I should make some frontend setup for user friendly messages fallbacks etc
                 //if (result.IsSuccess) { DOSomeGreatStuff() }else{ ComeOnYouCanDoIt() }
-                return Index();
+                return RedirectToAction("Index");
             }
             else
             {
                 //In case of some modelstate errors and stuff when server validation needed
-                return Edit(model.ProductID);
+                return ProductForm(model.ProductID);
             }
             
         }
-        public ActionResult Edit(int productId)
-        {
-            ProductModel product = ProductHelper.GetProductModelById(productId);
-            return View("ProductForm", product);
-        }
-       
-
     }
 }

@@ -1,0 +1,11 @@
+[
+  {
+    "ProductID": 1,
+    "ProductName": "asdasd",
+    "ProductDescription": "asdsa",
+    "Category": "asdsa",
+    "Manufacturer": "asd as",
+    "Supplier": "asdasd",
+    "Price": 11.0
+  }
+]
